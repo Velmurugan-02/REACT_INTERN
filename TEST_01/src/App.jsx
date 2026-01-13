@@ -1,4 +1,3 @@
-import './App.css'
 import Test_props from './Test_props';
 
 function App() {
