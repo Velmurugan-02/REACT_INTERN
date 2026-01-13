@@ -1,4 +1,4 @@
-import Test_props from '../Components/Test_props';
+import Test_props from '../Components/TestProps';
 
 function App() {
   let name = "Velmurugan";
