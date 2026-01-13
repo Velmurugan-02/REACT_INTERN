@@ -1,0 +1,11 @@
+FRAMEWORK :
+Angular is framework 
+Code is already implemented.
+In a framework, the framework controls the flow of the application and calls our code. In a library, we control the flow and call the library when needed.
+
+LIBRARY : 
+A library is a collection of reusable functions that I call when I need them, whereas a framework provides a complete structure and calls my code itself.
+
+WHY REACT IS LIBRARY :
+React is a library because it only handles the UI layer and gives developers freedom to choose tools for routing, state management, and data fetching. A framework like Angular provides built-in solutions and enforces a specific project structure.
+Even after adding React Router, React remains a library because these tools are optional and externally chosen. A framework dictates these decisions by default, whereas React lets the developer decide.

@@ -1,0 +1,59 @@
+React is a component based javascript library used to build dynamic and interactive user interfaces. It simplifies the creation of SPA (single-page-application) with focus on performance and maintainability.
+It is fully component based.
+The UI component can be reused.
+The React is Library not a framework because it works on views(User Interface) on the mvc(Model , View , Controller) architecture.
+React is created by Facebook
+React latest version 19.1.0
+Babel is a compiler that will be used to compile the Javascript(es6+) code and jsx into older version Javascript version es5.
+React is created in 2011. Open source 2013.
+------------------------------------------------
+Simple Program :
+import React from 'react';
+function App() {
+  return (
+    <div>
+      <h1>Hello, World!</h1>
+    </div>
+  );
+}
+
+export default App;
+-------------------------------------------------
+Working :
+Actual DOM is used to create New Virtual DOM 
+New Virtual DOM is compared with Old Virtual DOM (reconciliation)
+The Virtual DOM is Updated 
+New Actual DOM is created using new Virtual DOM 
+
+1. Actual DOM and Virtual DOM
+Initially, there is an Actual DOM(Real DOM) containing a div with two child elements: h1 and h2.
+React maintains a previous Virtual DOM to track the UI state before any updates.
+
+2. Detecting Changes
+When a change occurs (e.g., adding a new h3 element), React generates a New Virtual DOM.
+React compares the previous Virtual DOM with the New Virtual DOM using a process called reconciliation.
+
+3. Efficient DOM Update
+React identifies the differences (in this case, the new h3 element).
+Instead of updating the entire DOM, React updates only the changed part in the New Actual DOM, making the update process more efficient.
+-------------------------------------------------
+Features :
+1.Virtual DOM
+2.Component-Based Architecture
+3.JSX
+4.One-way data binding => data flows single direction from parent to child components using props
+5.State Management
+6.React Hooks
+7.React Router
+-------------------------------------------------
+React components life cycle :
+Initialization 
+Mounting phase
+Updating phase
+Unmounting phase
+-------------------------------------------------
+IMPORTANT :
+SPA => Single Page Application 
+The content will be changed or updated without loading the page. 
+A Single Page Application (SPA) is a type of web application that loads and updates content dynamically without refreshing the entire page. Unlike traditional websites, SPAs use modern technologies to enhance the user experience by minimizing interruptions and providing a smoother interface.
+-------------------------------------------------
