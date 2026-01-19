@@ -1,0 +1,72 @@
+Events :
+Events are actions or occurrences that happen in the browser . They will be triggered by users interaction or by the browser.
+
+Event Types:
+Mouse Events: click, dblclick, mousemove, mouseover, mouseout
+Keyboard Events: keydown, keypress, keyup
+Form Events: submit, change, focus, blur
+Window Events: load, resize, scroll
+
+JavaScript Event handlers :
+Event handlers can be used to handle and verify user input, user actions, and browser actions
+
+
+Event Handling Methods
+1. Inline HTML Handlers
+
+<button onclick="alert('Button clicked!')">Click Me</button>
+2. DOM Property Handlers
+
+let btn = document.getElementById("myButton");
+btn.onclick = () => {
+      alert("Button clicked!");
+};
+3. addEventListener() (Preferred)
+
+btn.addEventListener("click", () => {
+    alert("Button clicked using addEventListener!");
+});
+addEventListener() is the most versatile and recommended method as it supports multiple event listeners and removal of listeners.
+
+Event Loop :
+JavaScript is single-threaded, it uses the event loop to manage the execution of multiple tasks without blocking the main thread.
+
+Event loop Working :
+Call Stack: JavaScript has a call stack where function execution is managed in a Last-In, First-Out (LIFO) order.
+Web APIs (or Background Tasks): These include setTimeout, setInterval, fetch, DOM events, and other non-blocking operations.
+Callback Queue (Task Queue): When an asynchronous operation is completed, its callback is pushed into the task queue.
+Microtask Queue: Promises and other microtasks go into the microtask queue, which is processed before the task queue.
+Event Loop: It continuously checks the call stack and, if empty, moves tasks from the queue to the stack for execution.
+
+Common issues :
+1.Blocking the main thread => like infinite loop .
+Example :
+while(true)
+{
+    console.log('Blocking...')
+}
+
+2.Delayed Execution of setTimeout
+Example :
+console.log("Start");
+setTimeout(() => console.log("Inside setTimeout"), 1000);
+for (let i = 0; i < 1e9; i++) {} // Long loop
+console.log("End");
+
+3.Priority of Microtask over callbacks => Promises will be done before callbacks
+Example :
+setTimeout(() => console.log("setTimeout"), 0);
+Promise.resolve().then(() => console.log("Promise"));
+console.log("End");
+
+4.Callback Hell
+Example :
+setTimeout(() => {
+    console.log("Step 1");
+    setTimeout(() => {
+        console.log("Step 2");
+        setTimeout(() => {
+            console.log("Step 3");
+        }, 1000);
+    }, 1000);
+}, 1000);

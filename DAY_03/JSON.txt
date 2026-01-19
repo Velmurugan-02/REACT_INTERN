@@ -1,0 +1,37 @@
+JSON (JavaScript Object Notation) :
+JSON is widely used because it provides a lightweight, structured, and language-independent way to represent data. It preserves data types, supports hierarchical structures, maps directly to programming objects, and is efficiently parsed and transmitted over networks. Compared to plain text or CSV, JSON reduces ambiguity, improves scalability, and enables reliable system-to-system communication.
+
+JSON stands for JavaScript Object Notation.
+JSON is a plain text format for storing and transporting data.
+JSON is similar to the syntax for creating JavaScript objects.
+JSON is used to send, receive and store data.
+
+Example :
+{
+"employees":[
+  {"firstName":"John", "lastName":"Doe"},
+  {"firstName":"Anna", "lastName":"Smith"},
+  {"firstName":"Peter", "lastName":"Jones"}
+]
+}
+
+JSON in JS :
+JavaScript program can easily convert JSON data into native JavaScript objects.
+JavaScript has a built in function for converting JSON strings into JavaScript objects:
+JSON.parse()
+
+JavaScript also has a built in function for converting an object into a JSON string:
+JSON.stringify()
+
+JSON and XML :
+Both JSON and XML are "self describing" (human readable)
+Both JSON and XML are hierarchical (values within values)
+Both JSON and XML can be parsed and used by lots of programming languages
+Both JSON and XML can be fetched with an XMLHttpRequest
+
+Difference :
+XML has to be parsed with an XML parser. JSON can be parsed by a standard JavaScript function.
+JSON doesn't use end tag
+JSON is shorter
+JSON is quicker to read and write
+JSON can use arrays

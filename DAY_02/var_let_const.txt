@@ -1,0 +1,20 @@
+Var :
+It is used for global variables . But it can cause problems .
+let :
+It can be used as local variable . It is used when mutation of the value is required .
+const :
+It is used for not changable values. 
+
+| Feature      | var               | let       | const     |
+| ------------ | ----------------- | --------- | --------- |
+| Scope        | Function          | Block     | Block     |
+| Re-declare   | ✅ Yes             | ❌ No      | ❌ No      |
+| Re-assign    | ✅ Yes             | ✅ Yes     | ❌ No      |
+| Hoisting     | Yes (`undefined`) | Yes (TDZ) | Yes (TDZ) |
+| Modern usage | ❌ Avoid           | ✅ Yes     | ✅ Best    |
+
+var is function-scoped and error-prone. let and const are block-scoped, introduced in ES6. const prevents reassignment and improves code safety, so it’s preferred in modern JavaScript.
+
+Use const by default
+Switch to let only when mutation is required
+Forget var like an ex who caused bugs

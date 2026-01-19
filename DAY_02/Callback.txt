@@ -1,0 +1,49 @@
+Callback :
+A callback function is a function that is passed as an argument to another function and executed later.
+
+Example : 
+let fun_1 = (str , callback) => {
+  console.log(str);
+  str = "Aakash";
+  callback(str);
+}
+
+let fun_2 = (str) => {
+  console.log(str);
+}
+
+fun_1("Velmurugan",fun_2);
+
+Callbacks in Asynchronous function :
+Example :
+console.log("Start");
+setTimeout(function () {
+    console.log("Inside setTimeout");
+}, 2000);
+console.log("End");
+
+Callbacks Used in :
+1.API requests (fetching data)
+function fetch(callback) {
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
+        .then(response => response.json())
+        .then(data => callback(data))
+        .catch(error => console.error("Error:", error));
+}
+
+function handle(data) {
+    console.log("Fetched Data:", data);
+}
+
+fetch(handle);
+
+2.Reading files (Node.js file system)
+
+3.Event listeners (clicks, keyboard inputs)
+document.getElementById("myButton").addEventListener("click", function () {
+    console.log("Button clicked!");
+});
+
+4.Database queries (retrieving data)
+
+Problems : CallbackHell

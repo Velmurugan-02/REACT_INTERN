@@ -1,0 +1,18 @@
+Asynchronous JavaScript :
+Asynchronous JavaScript is a programming approach that enables the non-blocking execution of tasks, allowing concurrent operations, improved responsiveness, and efficient handling of time-consuming operations in web applications, JavaScript is a single-threaded and synchronous language. The code is executed in order one at a time.
+
+Approach 1 : Callbacks 
+Approach 2 : Promises
+Approach 3 : Event loop
+Approach 4 : Async and Await
+
+| Feature         | Sync               | Async        |
+| --------------- | ------------------ | ------------ |
+| Execution       | One by one         | Parallel-ish |
+| Blocking        | Yes                | No           |
+| Performance     | Poor for big tasks | High         |
+| UI Freezing     | Yes                | No           |
+| Real-world apps | ❌                | ✅           |
+| React / Node    | ❌                | ✅           |
+
+Synchronous code blocks execution until a task completes, while asynchronous code allows JavaScript to perform long-running operations like API calls without blocking the main thread, improving performance and user experience.
