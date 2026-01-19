@@ -1,0 +1,32 @@
+React component Lifecycle :
+The React component lifecycle describes the different stages a component goes through, allowing code to run at specific moments during its existence.
+
+Covers phases like creation, update, and removal of a component.
+Helps manage side effects and resources efficiently.
+Improves application performance through controlled execution.
+
+Mounting: Initializes, renders, and mounts the component (componentDidMount()).
+Updating: Handles state/prop changes, re-renders, and updates (componentDidUpdate()).
+Unmounting: Cleans up before removal (componentWillUnmount()).
+
+1. Mounting
+Mounting refers to the process of creating and inserting a component into the DOM for the first time in a React application. During mounting, React initializes the component, sets up its internal state (if any), and inserts it into the DOM.
+
+constructor
+getDerivedStateFromProps
+render()
+componentDidMount()
+
+2. Updating
+Updating is the phase where a component re-renders in response to changes in its state or props, ensuring the UI reflects the latest data.
+
+getDerivedStateFromProps()
+setState() Function
+shouldComponentUpdate()
+getSnapshotBeforeUpdate()
+componentDidUpdate()
+
+3. Unmounting
+This is the final phase of the lifecycle of the component, which is the phase of unmounting the component from the DOM. The following function is the sole member of this phase.
+
+componentWillUnmount()
