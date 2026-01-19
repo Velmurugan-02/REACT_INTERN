@@ -1,9 +1,10 @@
+import Login_UI from "../Components/Login_UI";
 function App() {
-  let name = "Velmurugan";
   return (
     <>
+    <Login_UI></Login_UI>
     </>
   )
 }
 
-export default App
+export default App;
