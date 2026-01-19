@@ -1,0 +1,64 @@
+State Hooks :
+Functions that let you add state (data that changes over time) to functional components, allowing them to remember information between renders without using class components, returning the current state value and a function to update it, which triggers a re-render. They are fundamental for managing dynamic data like user input, loading statuses, or fetched data within modern React apps. 
+
+Enables State in Functional Components: Before hooks (React 16.8), state was exclusive to class components; useState brought state management to functions.
+
+Types of state hooks :
+1.usestate hook 
+2.usereducer hook
+
+1.UseState hook :
+Usestate hook is used to change the state that is data of the functional component that data or state will be update between the re-render of the component . The value will be stored and updated during the render process .
+
+The core problem useState solves :
+function counter() {
+  let count = 0;
+  count++;
+  console.log(count);
+}
+counter(); // 1
+counter(); // 1 again
+This function will not remember the value by the function .
+It requests React to store data between renders and re-run the component when that data changes
+
+Syntax :
+const [value, setValue] = useState(initialValue);
+
+Example :
+import { useState } from "react";
+
+function Login_UI(){
+    let [name , setName] = useState("");
+    let [pass , setPass] = useState("");
+    let [message , setMessage] = useState("");
+    let name_fun = (event) => {
+        setName(event.target.value);
+    };
+    let pass_fun = (event) => {
+        setPass(event.target.value); 
+    };
+    let message_fun = () =>{
+        if(name !== "" && pass.length < 6){
+            setMessage("Invalid credentials");
+        }
+        else setMessage("Login successfully");
+    }
+    return(
+    <>
+        <label>Name</label>
+        <br></br>
+        <input type = "text" placeholder = "Yourname" onChange={name_fun}></input>
+        <br></br>
+        <br></br>
+        <label>Password</label>
+        <br></br>
+        <input type = "text" placeholder = "******" onChange={pass_fun}></input>
+        <button onClick={message_fun}>Check</button>
+        <p>Name : {name}</p>
+        <p>Password : {pass}</p>
+        <p>Message : {message}</p>
+    </>
+    )
+}
+
+export default Login_UI;
