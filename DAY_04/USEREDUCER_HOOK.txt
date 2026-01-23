@@ -1,0 +1,30 @@
+UseReducer Hook :
+UseReducer is a React Hook used for managing complex state logic in functional components where:
+State consists of multiple related values
+State transitions depend on previous state
+Updates follow well-defined rules
+It is an alternative to UseState, inspired by the Reducer pattern used in Redux.
+
+Syntax :
+const [state, dispatch] = useReducer(reducer, initialState);
+
+Parameters:
+reducer → A pure function that defines how state changes
+initialState → Initial value of the state
+
+Returns:
+state → Current state object
+dispatch → Function to send actions to the reducer
+
+Reducer function structure
+function reducer(state, action) {
+  switch (action.type) {
+    case "ACTION_TYPE":
+      return newState;
+    default:
+      return state;
+  }
+}
+
+dispatch({ type: "INCREMENT" });
+

@@ -1,0 +1,11 @@
+| Feature                   | useState         | useReducer     |
+| ------------------------- | ---------------- | -------------- |
+| State complexity          | Simple           | Complex        |
+| Multiple related values   | ❌              | ✅             |
+| State transitions         | Direct           | Rule-based     |
+| Update logic location     | Inside component | Inside reducer |
+| Undo / Redo               | Hard             | Easy           |
+| Readability (large logic) | Poor             | Good           |
+| Debugging                 | Harder           | Easier         |
+| Redux-like pattern        | ❌              | ✅             |
+| Boilerplate               | Minimal          | More           |
