@@ -1,0 +1,31 @@
+React Hooks, introduced in React 16.8, enable functional components to use state, lifecycle, and other React features without relying on class components.
+
+Eliminate the need for class components for state and side-effect management.
+Improve code readability and encourage a functional programming style.
+Widely adopted in modern React projects for cleaner and more maintainable code.
+
+Types of Hooks :
+1.State Hooks 	   ===> Used to manage the state in the functional components.
+2.Context Hooks    ===> Used to allows the functional components to directly access values from the ReactContextAPI
+3.Effect Hooks 	   ===> Used to manage side effects 
+4.Performace Hooks ===> Used to optimize the performance by avoiding re-renders or recalculations.
+5.Resource Hooks   ===> Used to store mutable values or access DOM elements without triggering re-renders.
+6.Custom Hooks     ===> User-defined functions that encapsulate reusable logic.
+
+State hooks :
+State hooks like useState and useReducer enable functional components to manage state in a clean, efficient, and modular way.
+
+Context Hooks :
+The useContext hook allows functional components to directly access values from the React Context API without prop drilling.
+
+Effect hooks :
+Effect hooks allow functional components to manage side effects in a structured and efficient manner
+
+NOTE :
+In React, state is a built-in JavaScript object used by components to store and manage dynamic data that can change over time.
+When a component's state changes, React automatically re-renders the component to update the user interface (UI) to reflect the new data.
+
+React Context API ===> The React Context API allows data to be shared across components without passing it through each level. 
+It simplifies state management and avoids "prop drilling" in larger applications.
+Props drilling ===> Data is passed through one component or another in a Hierarchy way.
+
