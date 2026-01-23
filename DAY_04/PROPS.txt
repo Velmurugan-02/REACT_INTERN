@@ -1,0 +1,56 @@
+Props :
+In React, props (short for "properties") are used to pass information from one component to another. The main purpose of props is to allow a parent component to send data to its child components.
+Props cannot be modified by the receiving component.
+They are strictly for reading data and should not be altered.
+Props can be updated when the parent component’s state changes.
+
+Example :
+import React from 'react';
+
+function Greet(props) {
+    return <h1>Hello, {props.name}!</h1>;
+}
+
+function App() {
+    return <Greet name="John" />;
+}
+
+export default App;
+
+Syntax :
+<ComponentName propName="value" />
+
+NOTE :
+Props can be used in both functional and class components. With functional components, props are passed as arguments to the function.
+
+Props in React work by allowing data to flow from a parent component to a child component, making components dynamic and reusable.
+
+Steps to use Props:
+Define an attribute and its value (data).
+Pass it to the child component by using props.
+Render the props data.
+
+How to set a Default Value for Props:
+In React, defaultProps is a special property that allows us to set default values for props. This is useful when no value is passed for a prop, ensuring the component still works with a fallback value.
+Greet.jsx:
+import React from 'react';
+function Greeting(props) {
+    return <h1>Hello, {props.name}!</h1>;
+}
+Greeting.defaultProps = {
+    name: 'Guest',
+};
+export default Greeting;
+
+App.js:
+import React from 'react';
+import Greeting from './Greeting';
+function App() {
+    return (
+        <div>
+            <Greeting />
+            <Greeting name="Alia" />
+        </div>
+    );
+}
+export default App;

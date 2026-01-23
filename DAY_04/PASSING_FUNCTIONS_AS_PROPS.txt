@@ -1,0 +1,39 @@
+Passing functions as props :
+Props can also be used to pass functions from a parent component to a child component, allowing the child to interact with the parent’s logic.
+Enables child components to trigger parent actions.
+Helps manage events and shared behavior efficiently.
+
+Parent.jsx:
+import React from 'react';
+import Child from './Child';
+
+function Parent() {
+    const handleClick = () => {
+        alert('Button clicked in Child!');
+    };
+
+    return <Child onClick={handleClick} />;
+}
+export default Parent;
+
+Child.jsx:
+import React from 'react';
+
+function Child(props) {
+    return <button onClick={props.onClick}>Click Me!</button>;
+}
+export default Child;
+
+App.jsx:
+import React from 'react';
+import Parent from './Parent';
+
+function App() {
+    return (
+        <div>
+            <Parent />
+        </div>
+    );
+}
+export default App;
+

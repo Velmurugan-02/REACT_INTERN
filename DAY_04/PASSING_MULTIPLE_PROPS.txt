@@ -1,0 +1,63 @@
+Passing Multiple Props:
+In React, a parent component can pass multiple props to a child component, where each prop may hold a different type of data such as text, numbers, arrays, or functions.
+Multiple values can be passed to a component at the same time.
+Props can carry various data types, including functions.
+Example:
+Parent.jsx
+import React from 'react';
+import Child from './Child';  
+function Parent() {
+    const parentStyle = {
+        textAlign: 'center',  
+    };
+
+    return (
+        <div style={parentStyle}>
+            <h1>Welcome to the Parent Component!</h1>
+            <Child name="John" age={25} city="New York" />
+        </div>
+    );
+}
+export default Parent;
+
+Child.jsx
+import React from 'react';
+function Child(props) {
+    const childStyle = {
+        marginTop: '20px',
+        fontSize: '18px',
+        color: '#333',
+    };
+
+    return (
+        <div style={childStyle}>
+            <h2>Hello, {props.name}!</h2>
+            <p>You are {props.age} years old.</p>
+            <p>You live in {props.city}.</p>
+        </div>
+    );
+}
+export default Child;
+
+App.jsx
+import React from 'react';
+import Parent from './Parent';
+
+function App() {
+    const appStyle = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        margin: 0,
+        fontFamily: 'Arial, sans-serif',
+    };
+
+    return (
+        <div style={appStyle}>
+            <Parent />
+        </div>
+    );
+}
+
+export default App;

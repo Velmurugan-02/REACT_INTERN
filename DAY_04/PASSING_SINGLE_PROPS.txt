@@ -1,0 +1,34 @@
+1.Passing single prop :
+Parent.jsx :
+import React from 'react';
+import Child from './Child';
+function Parent() {
+    return (
+        <div>
+            <h1>Welcome to the Parent Component!</h1>
+            <Child name="John" />  {/* Passing the 'name' prop with value "John" */}
+        </div>
+    );
+}
+
+export default Parent;
+
+Child.jsx :
+import React from 'react';
+function Child(props) {
+    return <h2>Hello, {props.name}!</h2>; 
+}
+export default Child;
+
+App.jsx:
+import React from 'react';
+import Parent from './Parent';
+function App() {
+    return (
+        <div>
+            <Parent />  {/* Render the Parent component */}
+        </div>
+    );
+}
+export default App;
+
