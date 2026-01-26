@@ -1,10 +1,12 @@
-import Title_modify from "../Components/Effect_hooks/Title_change_effect/Title_modify";
-import DigitalClock from "../Components/Effect_hooks/Title_change_effect/DigitalClock";
+import UseRefExample from "../Components/Performance_hooks/UseRefExample";
+import Previous_count from "../Components/Performance_hooks/Previous_count";
+import FocusInput from "../Components/Performance_hooks/FocusInput";
 function App() {
   return (
     <>
-      <Title_modify />
-      <DigitalClock />
+      <UseRefExample />
+      <Previous_count />
+      <FocusInput />
     </>
   )
 }

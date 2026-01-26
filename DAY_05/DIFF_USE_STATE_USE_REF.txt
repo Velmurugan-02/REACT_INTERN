@@ -1,0 +1,10 @@
+| Feature                 | `useState` | `useRef`   |
+| ----------------------- | ---------- | ---------- |
+| Causes re-render        | ✅ Yes    | ❌ No       |
+| Persists across renders | ✅ Yes    | ✅ Yes      |
+| Updates UI              | ✅ Yes    | ❌ No       |
+| Stores DOM element      | ❌ No     | ✅ Yes      |
+| Performance friendly    | ⚠️ Medium | ✅ High     |
+| Value access            | Direct    | .current     |
+| Used for form data      | ✅ Yes    | ❌ No       |
+| Used for timers / refs  | ❌ No     | ✅ Yes      |
