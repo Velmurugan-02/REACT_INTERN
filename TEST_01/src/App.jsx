@@ -1,11 +1,10 @@
-import CartContext from "../Components/Context_hooks/E-Commerce_Context/CartContext";
-import UseContext from "../Components/Context_hooks/UseContext";
-
+import Title_modify from "../Components/Effect_hooks/Title_change_effect/Title_modify";
+import DigitalClock from "../Components/Effect_hooks/Title_change_effect/DigitalClock";
 function App() {
   return (
     <>
-      <UseContext></UseContext>
-      <CartContext></CartContext>
+      <Title_modify />
+      <DigitalClock />
     </>
   )
 }

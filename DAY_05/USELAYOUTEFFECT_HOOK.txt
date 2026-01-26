@@ -1,0 +1,39 @@
+UseLayoutEffect :
+The React JS useLayoutEffect works similarly to useEffect but rather works asynchronously like the useEffect hook, it fires synchronously after all DOM loading is done loading. This is useful for synchronously re-rendering the DOM and also to read the layout from the DOM. But to prevent blocking the page loading, we should always use the useEffect hook.
+
+Syntax :
+useLayoutEffect(setup, dependencies)
+or
+useLayoutEffect(()=> // some code to execute , dependency //e.g. [] if none)
+
+Example:
+// Filename - App.js
+import React, { useLayoutEffect, useState } from "react";
+
+const App = () => {
+    const [value, setValue] = useState("GFG");
+
+    useLayoutEffect(() => {
+        console.log(
+            "UseLayoutEffect is called with the value of ",
+            value
+        );
+    }, [value]);
+    setTimeout(() => {
+        setValue("GeeksForGeeks");
+    }, 2000);
+
+    return (
+        <div
+            style={{
+                textAlign: "center",
+                margin: "auto",
+            }}
+        >
+            <h1 style={{ color: "green" }}>{value}</h1> is
+            the greatest portal for geeks!
+        </div>
+    );
+};
+
+export default App;
