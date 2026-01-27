@@ -1,11 +1,13 @@
-import Sorting from "../Components/Performance_hooks/USEMEMO_HOOK/Sorting";
-import SquareNum from "../Components/Performance_hooks/USEMEMO_HOOK/SquareNum";
+import Function_count from "../Components/Performance_hooks/USECALLBACK_HOOK/Function_count";
+import Function_count_using_callback from "../Components/Performance_hooks/USECALLBACK_HOOK/Function_count_using_callback";
+import Parent from "../Components/Performance_hooks/USECALLBACK_HOOK/Parent";
 
 function App() {
   return (
     <>
-      <SquareNum />
-      <Sorting />
+      {/* <Function_count /> */}
+      {/* <Function_count_using_callback /> */}
+      <Parent />
     </>
   )
 }

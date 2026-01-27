@@ -1,0 +1,115 @@
+UseCallback :
+The useCallback Hook memoizes a function so it is not recreated on every render. It improves performance when passing callbacks to child components.
+Returns the same function reference until dependencies change.
+Helps prevent unnecessary re-renders.
+Useful when working with memoized child components.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Syntax :
+const memoizedCallback = useCallback(() => {
+    // Function logic
+}, [dependencies]);
+
+The function to be memoized is passed as a parameter to useCallback.
+An array of dependencies determines when the function should be recreated.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.Without using callback :
+import React, { useState } from "react";
+
+const funcSet = new Set();
+
+const App = () => {
+    const [prev, setPrev] = useState(0);
+    const [num, setNum] = useState(0);
+
+    const incPrev = () => setPrev(prev + 1);
+    const decPrev = () => setPrev(prev - 1);
+    const incNum = () => setNum(num + 1);
+
+    funcSet.add(incPrev);
+    funcSet.add(decPrev);
+    funcSet.add(incNum);
+    alert(funcSet.size);
+
+    return (
+        <div>
+            <h2>Without useCallback Hook</h2>
+            <button onClick={incPrev}>Increase Counter</button>
+            <button onClick={decPrev}>Decrease Counter</button>
+            <button onClick={incNum}>Increase Number</button>
+        </div>
+    );
+};
+
+export default App;
+
+2.Using Callback :
+import React, { useState, useCallback } from "react";
+
+const funcSet = new Set();
+
+const App = () => {
+    const [prev, setPrev] = useState(0);
+    const [num, setNum] = useState(0);
+
+    const incPrev = useCallback(() => setPrev(prev + 1), [prev]);
+    const decPrev = useCallback(() => setPrev(prev - 1), [prev]);
+    const incNum = useCallback(() => setNum(num + 1), [num]);
+
+    funcSet.add(incPrev);
+    funcSet.add(decPrev);
+    funcSet.add(incNum);
+    alert(funcSet.size);
+
+    return (
+        <div>
+            <h2>With useCallback Hook</h2>
+            <button onClick={incPrev}>Increase Counter</button>
+            <button onClick={decPrev}>Decrease Counter</button>
+            <button onClick={incNum}>Increase Number</button>
+        </div>
+    );
+};
+
+export default App;
+
+3.Using the callback in Parent and child Component :
+Parent Component :
+import React, { useState, useCallback } from 'react';
+import Child from './Child';
+
+function Parent() {
+  const [prev, setPrev] = useState(0);
+
+  // Using useCallback to memoize the function and prevent unnecessary re-renders of the child component
+  const increment = useCallback(() => {
+    setCount((prevCount) => prevCount + 1);
+  }, []); // Only recreate the function if dependencies change (in this case, none)
+
+  return (
+    <div>
+      <h1>Count: {prev}</h1>
+      {/* Pass the memoized function to the child */}
+      <Child onIncrement={increment} />
+      <button onClick={() => setPrev(prev + 1)}>Update Parent</button>
+    </div>
+  );
+}
+
+export default Parent;
+
+Child Component :
+import React, { memo } from 'react';
+
+function Child({ onIncrement }) {
+  console.log('Child re-rendered!');
+  
+  return (
+    <div>
+      <button onClick={onIncrement}>Increment from Child</button>
+    </div>
+  );
+}
+
+// Memoizing the child component to avoid unnecessary renders when props don't change
+export default memo(Child);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
