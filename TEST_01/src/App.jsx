@@ -1,13 +1,24 @@
-import Function_count from "../Components/Performance_hooks/USECALLBACK_HOOK/Function_count";
-import Function_count_using_callback from "../Components/Performance_hooks/USECALLBACK_HOOK/Function_count_using_callback";
-import Parent from "../Components/Performance_hooks/USECALLBACK_HOOK/Parent";
-
+import { Routes,Route } from "react-router-dom";
+import Navbar from "../Components/Routing/Navbar";
+import Home from "../Components/Routing/Pages/Home";
+import About from "../Components/Routing/Pages/About";
+import Contact from "../Components/Routing/Pages/Contact";
+import Profile from "../Components/Routing/NestedRouting/Profile";
+import Settings from "../Components/Routing/NestedRouting/Settings";
+import Information from "../Components/Routing/NestedRouting/Information";
 function App() {
   return (
     <>
-      {/* <Function_count /> */}
-      {/* <Function_count_using_callback /> */}
-      <Parent />
+    <Navbar />
+      <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/profile" element={<Profile />}>
+            <Route path="settings" element={<Settings />} />
+            <Route path="Information" element={<Information />} />
+          </Route>
+      </Routes>
     </>
   )
 }

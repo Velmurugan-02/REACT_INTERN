@@ -1,0 +1,52 @@
+React Routers :
+When creating a React application, managing navigation between different views or pages is important. React Router is the standard library for routing in React, enabling seamless navigation while maintaining the Single Page Application (SPA) behaviour.
+
+React Router is a declarative, component-based routing library for React applications. It enables navigation without reloading the page, making the application faster and more dynamic.
+Supports client-side routing in React applications.
+Provides nested routes for better organization.
+Allows for dynamic routing using parameters.
+Enables programmatic navigation via hooks like useNavigate().
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Types :
+Browser Router (<BrowserRouter>)
+Hash Router (<HashRouter>)
+Memory Router (<MemoryRouter>)
+Static Router (<StaticRouter>)
+Native Router (<NativeRouter>)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Browser Router :
+It uses the HTML5 history API to manage the navigation.
+This router makes use of pushState, replaceState, and the popState event to keep the UI in sync with the URL.
+It allows for clean and human-readable URLs without hash fragments.
+
+When to use :
+Hosting on a Web Server with Proper Routing
+Improved SEO
+Single Page Application
+Handling multiple pages and views
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Memory Router :
+Memory Router is used when there is no web browser, like in testing or mobile apps. It remembers the navigation history inside the app but does not change the URL. This makes it helpful for testing and non-browser environments.
+
+No URL Change
+In-memory history
+
+When to Use Memory Router :
+Server-Side Rendering
+Testing 
+ReactNative
+Non-Browser Environments
+When url not matter
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Hash Router :
+A Hash Router is another type of router used in React applications. It works by using the hash portion of the URL (the part that comes after the # symbol) to manage navigation.
+
+It uses URL hash (#) to represent different routes (e.g., http://example.com/#/home).
+The hash part is not sent to the server but is used to change the displayed content in the browser.
+It's useful for handling navigation in environments where you can't use regular URLs (like in static websites or when there's no server-side routing).
+
+When to Use Hash Router :
+Hosting on Static File Servers
+No Server-Side Routing
+Small Projects
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

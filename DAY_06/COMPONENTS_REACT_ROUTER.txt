@@ -1,0 +1,28 @@
+Components :
+1. BrowserRouter and HashRouter :
+BrowserRouter: Uses the HTML5 history API to keep your UI in sync with the URL.
+HashRouter: Uses the hash portion of the URL (i.e., window.location.hash) to keep your UI in sync with the URL.
+
+<BrowserRouter>
+    (/* Your routes go here */}
+</BrowserRouter>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Routes and Route
+Routes: A container for all your route definitions.
+Route: Defines a single route with a path and the component to render.
+<Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+</Routes>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Link and NavLink
+Link: Creates navigational links in your application.
+NavLink: Similar to Link but provides additional styling attributes when the link is active.
+<nav>
+    <NavLink to="/" activeClassName="active">Home</NavLink>
+    <Link to="/about">About</Link>
+</nav>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NOTE :
+npm install react-router-dom@6 ====> Installation of the React-Router-DOM.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
