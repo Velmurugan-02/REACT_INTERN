@@ -1,0 +1,142 @@
+Browser Router :
+React Router is the default router for React. It allows the switching from one view from one component to the next from multiple components in the React app, changes the browser address, and syncs the UI and the address.
+
+BrowserRouter is a component provided by the React Router to provide the client-side routing with the support of the HTML5 history API. It facilitates you to navigate the process without page reload. If you want to change between the next page while navigation then BrowserRouter modifies the web browser address accordingly to provide the functionality of preserving the state of the application while changing the views.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Syntax :
+<BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+</BrowserRouter>
+
+Enables Routing: BrowserRouter wraps the application, allowing URL-based navigation without page reloads.
+Defines Routes: Routes contain Route components, mapping paths (/, /about) to specific React components.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Use :
+Seamless Navigation: Ensures smooth transitions without full-page reloads.
+Seamless Navigation: Ensures smooth transitions without full-page reloads.
+Improves Performance: Reduces unnecessary HTTP requests for navigation.
+Deep Linking Support: Enables bookmarking and direct linking.
+Works Well with State Management: Easily integrates with Redux, Context API, etc.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+URL Detection :
+BrowserRouter uses the HTML5 History API to detect changes in the URL. This allows React Router to manipulate the URL while keeping the page from reloading. When a user navigates to a different route (e.g., clicking a <Link> or typing a URL), BrowserRouter listens for this URL change.
+
+Matching the URL :
+Inside BrowserRouter the Route components define which URL path corresponds to which component. For instance, when the URL is /about, a <Route path="/about" component={About} /> is matched.
+
+Rendering Components :
+After matching the URL to the corresponding Route, the associated component is rendered. If the URL matches /about, the About component will be displayed.
+
+Navigating Between Views :
+When a user clicks a link, such as:
+<Link to="/about">Go to About</Link>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Example :
+main.jsx :
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import { BrowserRouter } from "react-router-dom";
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StrictMode>,
+)
+
+App.jsx :
+import { Routes,Route } from "react-router-dom";
+import Navbar from "../Components/Routing/Navbar";
+import Home from "../Components/Routing/Pages/Home";
+import About from "../Components/Routing/Pages/About";
+import Contact from "../Components/Routing/Pages/Contact";
+import Profile from "../Components/Routing/NestedRouting/Profile";
+function App() {
+  return (
+    <>
+    <Navbar />
+      <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
+      </Routes>
+    </>
+  )
+}
+
+export default App;
+
+Navbar.jsx :
+import {Link} from "react-router-dom";
+
+let Navbar = () => {
+    return(
+        <nav>
+            <Link to="/">Home</Link><br></br>
+            <Link to="/about">About</Link><br></br>
+            <Link to="/contact">Contact</Link><br></br>
+            <Link to="/profile">Profile</Link>
+        </nav>
+    );
+}
+
+export default Navbar;
+
+Profile.jsx :
+let Profile = () => {
+    return(
+        <>
+            <div>
+                <p>Profile</p>
+            </div>
+        </>
+    );
+}
+
+export default Profile;
+
+Home.jsx :
+let Home = () =>{
+    return(
+        <>
+            <div>
+                <p>Home Component</p>
+            </div>
+        </>
+    );
+}
+
+export default Home;
+
+About.jsx :
+let About = () =>{
+    return(
+        <>
+            <div>
+                <p>About Component</p>
+            </div>
+        </>
+    );
+}
+
+export default About;
+
+Contact.jsx :
+let Contact = () =>{
+    return(
+        <>
+            <div>
+                <p>Contact Component</p>
+            </div>
+        </>
+    );
+}
+
+export default Contact;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
