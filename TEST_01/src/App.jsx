@@ -1,12 +1,11 @@
-import UseRefExample from "../Components/Performance_hooks/UseRefExample";
-import Previous_count from "../Components/Performance_hooks/Previous_count";
-import FocusInput from "../Components/Performance_hooks/FocusInput";
+import Sorting from "../Components/Performance_hooks/USEMEMO_HOOK/Sorting";
+import SquareNum from "../Components/Performance_hooks/USEMEMO_HOOK/SquareNum";
+
 function App() {
   return (
     <>
-      <UseRefExample />
-      <Previous_count />
-      <FocusInput />
+      <SquareNum />
+      <Sorting />
     </>
   )
 }
