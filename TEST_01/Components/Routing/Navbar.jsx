@@ -6,7 +6,8 @@ let Navbar = () => {
             <Link to="/">Home</Link><br></br>
             <Link to="/about">About</Link><br></br>
             <Link to="/contact">Contact</Link><br></br>
-            <Link to="/profile">Profile</Link>
+            <Link to="/profile">Profile</Link><br></br>
+            <Link to="/admin">Admin</Link>
         </nav>
     );
 }
