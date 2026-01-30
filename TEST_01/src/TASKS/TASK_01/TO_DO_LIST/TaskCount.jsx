@@ -1,9 +1,4 @@
-import { useEffect } from "react";
-
 let TaskCount = ({totaltask,count_rem_task,count_finished_task}) =>{
-    // useEffect(()=>{
-        
-    // },[totaltask,count_finished_task,count_rem_task])
     return(
         <>
             <div className="task_count_div">
