@@ -10,13 +10,45 @@ body {
   background: linear-gradient(135deg, #eef2ff, #f8fafc);
 }
 
+/* Main Div */
+.main_div{
+  position: relative;
+  min-height: 100vh;
+  padding: 20px;
+  width: 100%;
+}
+
+.time_div{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.heading_div{  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo_heading {
+  margin-bottom: 16px;
+}
+
+.heading_main_div{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
 /* Main Container */
 .main_container{
+  width: 900px; 
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  gap:10px; 
+  align-items: center;
+  gap: 20px;
 }
 
 /* ===== Heading ===== */
@@ -120,13 +152,48 @@ p {
   display: flex;
   flex-direction: row;
   gap: 20px;
+  width: 100%;
+  align-items: flex-start;
 }
 
-.finished_task_div, .heading_div , .remaining_task{
-  border: #1f2937 solid 0.1rem;
-  padding: 10px;
-  border-radius: 1px;
+.remaining_task{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+
+.remaining_task,
+.finished_task_div {
+  border: 2px solid #ddd;
+  border-radius: 14px;
+  padding: 12px;
+  margin-top: 16px;
+  background: #fff;
+  max-height: 220px;
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+
+.expanded {
+  max-height: 600px;
+  border-color: #4f46e5;
+  box-shadow: 0 12px 28px rgba(79, 70, 229, 0.25);
+  transform: scale(1.01);
+}
+
+.remaining_task::has(.rem_list li){
+  max-height: 600px;
+}
+
+.finished_task_div:has(.finished-container li) {
+  max-height: 600px;
+}
+
+/* .finished_task_div, .heading_div , .remaining_task{
+  flex: 1;              
+  min-width: 200px;     
+  transition: all 0.3s ease; 
+} */
 
 .Rem_div{
     display: flex;
@@ -145,7 +212,6 @@ p {
     margin-left: auto;
 }
 
-.rem_list,
 .finished-container {
   margin-bottom: 16px;
 }
@@ -167,6 +233,7 @@ p {
   justify-content: space-between;
   align-items: center;
   border: 1px solid #e5e7eb;
+  gap: 10px;
 }
 
 /* ===== Buttons ===== */

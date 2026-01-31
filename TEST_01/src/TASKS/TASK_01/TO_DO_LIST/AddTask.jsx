@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-let AddTask = ({Rem_tasks,onfinish}) =>{
-    let [value_priority_choice,setValue_priority_choice] = useState("");
+let AddTask = ({Rem_tasks,onfinish,Remove_task_rem}) =>{
+    let [value_priority_choice,setValue_priority_choice] = useState("All");
     const priorityOrder = { High: 1, Medium: 2, Low: 3 };
     let sortedTasks = [...Rem_tasks].filter((task =>
-        value_priority_choice === "All" ? true : task.task_level === value_priority_choice)).sort((a, b) => priorityOrder[a.task_level] - priorityOrder[b.task_level]); 
+        value_priority_choice === "All" ? true : task.task_level === value_priority_choice))
+        .sort((a, b) => priorityOrder[a.task_level] - priorityOrder[b.task_level]); 
     let value_priority = (e) =>{
         setValue_priority_choice(e.target.value);
     }
@@ -29,11 +30,15 @@ let AddTask = ({Rem_tasks,onfinish}) =>{
                                     <span className={`priority ${task.task_level}`}>
                                       {task.task_level}
                                     </span>
-                                    { task.date === new Date().toISOString().split("T")[0] && 
+                                    { 
+                                    task.date === new Date().toISOString().split("T")[0] && 
                                     <button className="rem_btn" onClick={()=>{onfinish(task.id)}}>{/*onfinish function is called*/}
                                         Finished
                                     </button>
                                     }
+                                    <button onClick={()=>Remove_task_rem(task.id)}>
+                                        Remove
+                                    </button>
                                 </li>
                             </div>
                         ))}

@@ -10,7 +10,7 @@ let FinishedTask = ({Finished_task , Remove_task}) =>{
                         <div key={task.id}>
                                 <li>
                                     {task.text}
-                                    <button className="" onClick={()=>Remove_task(task.id)}>
+                                    <button onClick={()=>Remove_task(task.id)}>
                                         Remove
                                     </button>
                                 </li>
