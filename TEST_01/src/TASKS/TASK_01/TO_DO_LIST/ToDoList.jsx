@@ -80,9 +80,7 @@ let ToDoList = () => {
     const count_rem_task = listtask.length;
     const count_finished_task = finishedtask.length;
     // Total Task , Remaining task , Finished Task is counted.
-    let totaltask = useMemo(()=>{
-            listtask.length + finishedtask.length;
-    },[count_rem_task,count_finished_task]);
+    let totaltask = listtask.length + finishedtask.length;
     
     return(
         <>

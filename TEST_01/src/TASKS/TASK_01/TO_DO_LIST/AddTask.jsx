@@ -31,14 +31,16 @@ let AddTask = ({Rem_tasks,onfinish,Remove_task_rem}) =>{
                                       {task.task_level}
                                     </span>
                                     { 
-                                    task.date === new Date().toISOString().split("T")[0] && 
-                                    <button className="rem_btn" onClick={()=>{onfinish(task.id)}}>{/*onfinish function is called*/}
-                                        Finished
-                                    </button>
+                                    task.date === new Date().toISOString().split("T")[0] &&
+                                    <div className="task_actions">
+                                        <button className="rem_btn" onClick={()=>{onfinish(task.id)}}>{/*onfinish function is called*/}
+                                            Finished
+                                        </button>
+                                        <button onClick={()=>Remove_task_rem(task.id)} className="removing_task_btn">
+                                            Remove
+                                        </button>
+                                    </div> 
                                     }
-                                    <button onClick={()=>Remove_task_rem(task.id)}>
-                                        Remove
-                                    </button>
                                 </li>
                             </div>
                         ))}

@@ -10,9 +10,11 @@ let FinishedTask = ({Finished_task , Remove_task}) =>{
                         <div key={task.id}>
                                 <li>
                                     {task.text}
-                                    <button onClick={()=>Remove_task(task.id)}>
-                                        Remove
-                                    </button>
+                                    <div className="task_actions">
+                                        <button onClick={()=>Remove_task(task.id)}>
+                                            Remove
+                                        </button>
+                                    </div>
                                 </li>
                             </div>
                         ))}
