@@ -22,6 +22,7 @@ body {
   position: absolute;
   top: 20px;
   left: 20px;
+  pointer-events: none;
 }
 
 .heading_div{  
@@ -52,6 +53,11 @@ body {
   gap: 20px;
 }
 
+.main_div,
+.main_container {
+  overflow: visible;
+}
+
 /* ===== Heading ===== */
 .heading_label {
   font-size: 1.6rem;
@@ -68,6 +74,8 @@ body {
   flex-direction: column;
   gap: 6px;
   margin-bottom: 12px;
+  position: relative;
+  z-index: 9999;
 }
 
 .calendar_div label {
@@ -80,6 +88,9 @@ body {
   border-radius: 8px;
   border: 1px solid #d1d5db;
   font-size: 0.9rem;
+  pointer-events: auto;
+  position: relative;
+  z-index: 9999;
 }
 
 /* ===== Selected Date ===== */
@@ -174,6 +185,8 @@ p {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .heading_div,
@@ -201,10 +214,12 @@ p {
   max-height: 600px;
   border-color: #4f46e5;
   box-shadow: 0 12px 28px rgba(79, 70, 229, 0.25);
-  transform: scale(1.01);
+  max-height: 600px;
+  border-color: #4f46e5;
+  box-shadow: 0 12px 28px rgba(79, 70, 229, 0.25);
 }
 
-.remaining_task::has(.rem_list li){
+.remaining_task:has(.rem_list li){
   max-height: 600px;
 }
 
