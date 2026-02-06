@@ -1,0 +1,76 @@
+Custom Hooks :
+A custom hook is a JavaScript function that starts with use and internally calls other hooks like useState, useEffect, or useContext. It allows developers to extract reusable logic, keeping components clean and modular.
+
+Syntax :
+
+function useCustomHook() {
+    // Use built-in hooks here
+    return someValue;
+}
+
+Steps to create Custom Hooks :
+1. Define a Function That Starts with use (ex : useFetch() ===> Naming Conversion)
+
+2. Use React's Built-in Hooks Inside Your Custom Hook
+   ex :
+   function useCounter() {
+     const [count, setCount] = useState(0);
+     return [count, () => setCount(count + 1)];
+   }
+
+3. Add Logic Inside useEffect for Side Effects
+   ex :
+   function useFetchData(url) {
+     const [data, setData] = useState(null);
+     useEffect(() => {
+         fetch(url).then(response => response.json()).then(setData);
+     }, [url]);
+     return data;
+    }
+
+4. Return Necessary Values :
+   Your custom hook should return state, functions, or values that components need, such as fetched data, loading state, or error messages.
+
+5. Use the Custom Hook in Components
+   Once defined, your custom hook can be used inside a React component just like a built-in hook.
+
+Example : 
+User_connection_check.jsx :
+import useOnlineStatus from "./useOnlineStatus";
+
+function StatusBar() {
+  const isOnline = useOnlineStatus();
+
+  return (
+    <h2>
+      {isOnline ? "You are Online" : "You are Offline"}
+    </h2>
+  );
+}
+
+export default StatusBar;
+
+UseOnlineStatus.jsx :
+import { useEffect, useState } from "react";
+
+function useOnlineStatus() {
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    const goOnline = () => setIsOnline(true);
+    const goOffline = () => setIsOnline(false);
+
+    window.addEventListener("online", goOnline);
+    window.addEventListener("offline", goOffline);
+
+    return () => {
+      window.removeEventListener("online", goOnline);
+      window.removeEventListener("offline", goOffline);
+    };
+  }, []);
+
+  return isOnline;
+}
+
+export default useOnlineStatus;
+
