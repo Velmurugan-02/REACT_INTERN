@@ -1,0 +1,8 @@
+| Feature        | Session Storage  | Local Storage | Cookies            |
+| -------------- | ---------------- | ------------- | ------------------ |
+| Lifetime       | Until tab closes | Permanent     | Configurable       |
+| Scope          | Per tab          | Per browser   | Per domain         |
+| Sent to server | ❌ No           | ❌ No         | ✅ Yes            |
+| Capacity       | ~5MB             | ~5–10MB       | ~4KB               |
+| Best for       | Temporary state  | Preferences   | Auth & sessions    |
+| Security level | Low              | Low           | Medium (HTTP-only) |

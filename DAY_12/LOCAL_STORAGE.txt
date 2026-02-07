@@ -1,0 +1,28 @@
+Local Storage API :
+localStorage persists data until explicitly cleared by the user or the web application.
+LocalStorage is a web storage object to store the data on the user’s computer locally, which means the stored data is saved across browser sessions and the data stored has no expiration time.
+
+Storing Data:
+localStorage.setItem('username', 'GeeksforGeeks');
+
+Retrieving Data:
+const username = localStorage.getItem('username');
+
+Updating Data:
+localStorage.setItem('username', 'GfG');
+
+Removing Data:
+localStorage.removeItem('username');
+
+Clearing All Data:
+localStorage.clear();
+
+Real World example :
+Dark / Light Mode
+Language Preference
+Remember “Don’t show this again”
+Dashboard Layout Customization
+Recently Viewed Items
+Form Draft Recovery
+Onboarding Progress (non-logged users)
+

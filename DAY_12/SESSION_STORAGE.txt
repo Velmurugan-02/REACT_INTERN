@@ -1,0 +1,67 @@
+Session Storage :
+In React, sessionStorage is used to persist data for the duration of a single browser session (until the tab is closed). It works just like the standard Web Storage API, but for idiomatic React use, it is best implemented within a custom hook utilizing useState and useEffect to synchronize state with the storage. 
+
+Session Storage is a browser storage mechanism that stores key–value data for the lifetime of a single browser tab.
+Once the tab is closed, the data is automatically deleted.
+
+Core Concepts
+Session Scope: Data in sessionStorage is tied to the specific browser tab or window session that created it. It is cleared when that session ends (e.g., the tab is closed).
+String Only: sessionStorage can only store strings. Objects or arrays must be serialized using JSON.stringify() before saving and deserialized using JSON.parse() when retrieving.
+Browser-Side Only: It is only available on the client side (in the browser), not during server-side rendering.
+API Methods: The primary methods for interacting with sessionStorage are the same as with vanilla JavaScript:
+setItem(key, value): Stores a key-value pair.
+getItem(key): Retrieves an item by its key.
+removeItem(key): Removes an item by its key.
+clear(): Clears all data from session storage for the current origin.
+
+
+| Action           | Session Storage     |
+| ---------------- | ------------------- |
+| Page refresh     | ✅ Data persists     |
+| SPA route change | ✅ Data persists     |
+| Open new tab     | ❌ New empty storage |
+| Close tab        | ❌ Data deleted      |
+| Browser restart  | ❌ Data deleted      |
+
+
+Example :
+import { useState , useEffect } from "react";
+
+let SessionStorageNote = () =>{
+    let [note,setNote] = useState("");
+    let setting_note = (e) =>{
+        setNote(e.target.value);
+    } 
+    // Load note on page load
+    useEffect(() => {
+        const storedNote = sessionStorage.getItem("note");
+        if (storedNote) {
+            setNote(storedNote);
+        }
+    }, []);
+
+    // Save note whenever it changes
+    useEffect(() => {
+        sessionStorage.setItem("note", note);
+    }, [note]);
+
+    const remove_note = () => {
+        sessionStorage.removeItem("note");
+        setNote("");
+    };
+    return(
+        <>
+            <textarea type="textarea" 
+            value={note} 
+            onChange={setting_note} 
+            placeholder="Write something for NOTES" 
+            rows={3}
+            style={{ width: "100%", padding: "8px" }}
+            />
+            {sessionStorage.getItem('note') && <p>{sessionStorage.getItem('note')}</p>}
+            <button onClick={remove_note}>Remove Notes</button>
+        </>
+    );
+}
+
+export default SessionStorageNote;
