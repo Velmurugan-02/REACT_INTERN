@@ -5,21 +5,31 @@ import FinishedTask from "./FinishedTask";
 import TaskCount from "./TaskCount";
 import Calendar from "./Calendar";
 import Time from "./Time";
+import { getCookie, setCookie } from "./cookieUtils";
 import "./style/style.css";
+
 
 let ToDoList = () => {
     //creating a state for the input.
     let [task, setTask] = useState('');
-    //creating a state list of task. 
+    //creating a state list of task and Storing in Cookie.
     let [listtask, setListtask] = useState(() => {
-        let list_existing = localStorage.getItem('Remaining_tasklist');
+        let list_existing = getCookie('Remaining_tasklist');
         return list_existing ? JSON.parse(list_existing) : [];
     });
-    //creating the state for finished task.
+    //Useeffect for storing the list of task in Cookie.
+    useEffect(() => {
+        setCookie('Remaining_tasklist', JSON.stringify(listtask), 7);
+    }, [listtask]);
+    //creating the state for finished task and Storing in Cookie.
     let [finishedtask, setFinishedtask] = useState(() => {
-        let finished_existing = localStorage.getItem('finished_tasklist');
+        let finished_existing = getCookie('finished_tasklist');
         return finished_existing ? JSON.parse(finished_existing) : [];
     });
+    //Useeffect for storing the finished task in Cookie.
+    useEffect(() => {
+        setCookie('finished_tasklist', JSON.stringify(finishedtask), 7);
+    }, [finishedtask]);
     //Creating date state for calender
     let [selectedDate, setSelectedDate] = useState(
         new Date().toISOString().split("T")[0]
@@ -30,6 +40,13 @@ let ToDoList = () => {
     //State for expanding
     let [expandRemaining, setExpandRemaining] = useState(false);
     let [expandFinished, setExpandFinished] = useState(false);
+    //Local Storage with for dark and light Theme
+    let [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+    //Useeffect for storing the theme in local storage.
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
     //Updating the state for input.
     let value_bind = (e) => {
         setTask(e.target.value);
@@ -101,6 +118,13 @@ let ToDoList = () => {
             <div className="main_div">
                 <div className="time_div">
                     <Time />
+                    <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+                        {theme === 'light' ? 'Dark' : 'Light'}
+                    </button>
+                    <div>
+                        <label>Name</label>
+                        <input type="text" placeholder="Enter your name" value={name} onChange={value_bind}></input>
+                    </div>
                 </div>
                 <div className="heading_main_div">
                     <div className="todo_heading">
