@@ -6,6 +6,7 @@ import TaskCount from "./TaskCount";
 import Calendar from "./Calendar";
 import Time from "./Time";
 import { getCookie, setCookie } from "./cookieUtils";
+import { FaSun, FaMoon } from "react-icons/fa";
 import "./style/style.css";
 
 let ToDoList = () => {
@@ -140,9 +141,9 @@ let ToDoList = () => {
             <div className="main_div">
                 <div className="time_div">
                     <Time />
-                    <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-                        {theme === 'light' ? 'Dark' : 'Light'}
-                    </button>
+                    <div className="theme_icon" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+                        {theme === 'light' ? <FaMoon /> : <FaSun />}
+                    </div>
                     <div className="username_div">
                         <label>Name</label>
                         <input type="text" placeholder="Enter your name" value={username} onChange={value_bind_name}></input>
