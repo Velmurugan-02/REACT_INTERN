@@ -1,0 +1,20 @@
+Cookies are mainly used to:
+Maintain login sessions
+Store user preferences
+Enable analytics and tracking
+Support personalization
+
+Session storage usages :
+Multi-step forms
+Temporary UI state in Single Page Applications
+One-time user flows
+Prevent duplicate actions in a session
+
+Local Storage :
+Dark / Light Mode
+Language Preference
+Remember “Don’t show this again”
+Dashboard Layout Customization
+Recently Viewed Items
+Form Draft Recovery
+Onboarding Progress (non-logged users)

@@ -1,0 +1,92 @@
+Cookies Storage :
+A cookie is a small piece of data (a name=value pair) that a website stores in the user’s browser. The browser automatically sends that cookie back to the same website on future requests (depending on rules like domain/path/SameSite).
+
+Maintain sessions (because HTTP is stateless)
+Remember preferences	
+Enable analytics and tracking (controversial, but real)
+
+Basic data structure
+A cookie is basically:
+Name: sessionId
+Value: abc123
+Attributes (metadata that controls behavior):
+Expires / Max-Age (how long it lasts)
+Domain / Path (where it’s sent)
+Secure (HTTPS only)
+HttpOnly (not readable by JS)
+SameSite (controls cross-site sending)
+
+A) Created & stored (server → browser)
+Server sends an HTTP response header:
+Set-Cookie: tells the browser “store this cookie”
+Example shape:
+Set-Cookie: sessionId=abc123; Path=/; HttpOnly; Secure; SameSite=Lax
+Browser stores it in its cookie jar (per domain/path rules).
+
+B) Sent (browser → server)
+On later requests, the browser automatically includes:
+Cookie header:
+Cookie: sessionId=abc123; theme=dark
+This is why cookies are used for session auth: they naturally “ride along” with requests.
+
+C) Managed (client-side JS)
+JavaScript can read/write cookies via document.cookie only if they are NOT HttpOnly.
+Read: document.cookie (returns a single string of all readable cookies)
+Write: document.cookie = "key=value; ..."
+Important: JS can’t set HttpOnly (only servers can).
+
+D) Managed in React
+React itself doesn’t provide cookie APIs. You use:
+document.cookie directly (simple)
+or a library like js-cookie (cleaner), especially for parsing.
+
+Why cookies exist :
+HTTP is stateless
+Cookies allow websites to remember users and sessions
+
+Cookies are mainly used to:
+Maintain login sessions
+Store user preferences
+Enable analytics and tracking
+Support personalization
+
+Main Types of Cookies:
+First-Party Cookies: Set by the site the user visits, primarily for functionality.
+Third-Party Cookies: Set by external sites (e.g., advertisers) to track users across different websites.
+Session Cookies: Temporary files deleted when the browser is closed.
+Persistent Cookies: Remain on the device for a set period, remembering settings for future visits.
+
+Example :
+Auth cookies in React (real-world implementation)
+Best practice: HttpOnly session cookie
+
+Flow :
+React sends login request with username/password
+Server validates and responds with Set-Cookie: sessionId=...; HttpOnly; Secure; SameSite=Lax
+From now on, browser automatically sends cookie with requests
+
+React checks “am I logged in?” by calling /me or /profile
+
+React side: you must send requests with cookies
+
+Using fetch :
+await fetch("https://api.example.com/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  credentials: "include", // important: send/receive cookies
+  body: JSON.stringify({ username, password }),
+});
+
+Using axios :
+import axios from "axios";
+
+axios.defaults.withCredentials = true; // send cookies on every request
+// or per-request: { withCredentials: true }
+
+await axios.post("https://api.example.com/login", { username, password });
+
+Checking login in React
+const res = await fetch("https://api.example.com/me", {
+  credentials: "include",
+});
+const user = await res.json();
