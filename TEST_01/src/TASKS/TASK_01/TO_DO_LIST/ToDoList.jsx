@@ -1,5 +1,5 @@
 //importing components
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import AddTask from "./AddTask";
 import FinishedTask from "./FinishedTask";
 import TaskCount from "./TaskCount";
@@ -8,54 +8,65 @@ import Time from "./Time";
 import { getCookie, setCookie } from "./cookieUtils";
 import "./style/style.css";
 
-
 let ToDoList = () => {
     //creating a state for the input.
     let [task, setTask] = useState('');
+
     //creating a state list of task and Storing in Cookie.
     let [listtask, setListtask] = useState(() => {
         let list_existing = getCookie('Remaining_tasklist');
         return list_existing ? JSON.parse(list_existing) : [];
     });
+
     //Useeffect for storing the list of task in Cookie.
     useEffect(() => {
         setCookie('Remaining_tasklist', JSON.stringify(listtask), 7);
     }, [listtask]);
+
     //creating the state for finished task and Storing in Cookie.
     let [finishedtask, setFinishedtask] = useState(() => {
         let finished_existing = getCookie('finished_tasklist');
         return finished_existing ? JSON.parse(finished_existing) : [];
     });
+
     //Useeffect for storing the finished task in Cookie.
     useEffect(() => {
         setCookie('finished_tasklist', JSON.stringify(finishedtask), 7);
     }, [finishedtask]);
+
     //Creating date state for calender
     let [selectedDate, setSelectedDate] = useState(
         new Date().toISOString().split("T")[0]
     );
+
     //Creating a priority task with dropdown list.
     let [priority, setPriority] = useState("");
     let [value_input, setValue_input] = useState("");
+
     //State for expanding
     let [expandRemaining, setExpandRemaining] = useState(false);
     let [expandFinished, setExpandFinished] = useState(false);
+
     //Local Storage with for dark and light Theme
     let [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
     //Useeffect for storing the theme in local storage.
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
     }, [theme]);
+
     //Updating the state for input.
     let value_bind = (e) => {
         setTask(e.target.value);
         setValue_input(e.target.value);
     }
+
     //Updating the Priority for the task 
     let value_priority = (e) => {
         setPriority(e.target.value);
     }
+
     //Updating the state when add button is clicked
     let add_task = () => {
         if (task.trim() === "") {
@@ -75,6 +86,7 @@ let ToDoList = () => {
         setExpandRemaining(true);
         setExpandFinished(false);
     };
+
     //creating function for finished task for updating list of task and finished task.
     let finished_task = (taskId) => {
         const taskToFinish = listtask.find(t => t.id === taskId);
@@ -89,29 +101,39 @@ let ToDoList = () => {
     let remove_task = (taskId) => {
         setFinishedtask(prev => prev.filter(task => task.id !== taskId));
     }
+
     //Removing Task from Remaining task List
     let remove_task_rem = (taskId) => {
         setListtask(prev => prev.filter(task => task.id !== taskId));
     }
+
     //Filtering the task based on task date selected
     const filteredTasks = listtask.filter(
         (task) => task.date === selectedDate
     );
+
     //Filtering the finished task based on date
     const filteredFinishedTasks = finishedtask.filter((task) => task.date === selectedDate);
+
     //Counting the task list
     const count_rem_task = listtask.length;
     const count_finished_task = finishedtask.length;
+
     // Total Task , Remaining task , Finished Task is counted.
     let totaltask = listtask.length + finishedtask.length;
 
-    useEffect(() => {
-        localStorage.setItem('Remaining_tasklist', JSON.stringify(listtask))
-    }, [listtask])
+    let [username, setUsername] = useState(() => {
+        let username_local = localStorage.getItem("username");
+        return username_local || "";
+    });
 
+    let value_bind_name = (e) => {
+        setUsername(e.target.value);
+    }
     useEffect(() => {
-        localStorage.setItem('finished_tasklist', JSON.stringify(finishedtask))
-    }, [finishedtask])
+        localStorage.setItem("username", username);
+
+    }, [username]);
 
     return (
         <>
@@ -121,14 +143,15 @@ let ToDoList = () => {
                     <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
                         {theme === 'light' ? 'Dark' : 'Light'}
                     </button>
-                    <div>
+                    <div className="username_div">
                         <label>Name</label>
-                        <input type="text" placeholder="Enter your name" value={name} onChange={value_bind}></input>
+                        <input type="text" placeholder="Enter your name" value={username} onChange={value_bind_name}></input>
                     </div>
                 </div>
                 <div className="heading_main_div">
                     <div className="todo_heading">
                         <label className="heading_label">ToDo List</label>
+                        {username && <p className="welcome_msg">Welcome, {username}! Here is your list of tasks.</p>}
                     </div>
                     <div className="main_container">
                         <div>
