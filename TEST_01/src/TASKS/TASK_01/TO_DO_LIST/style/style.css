@@ -508,29 +508,6 @@ p {
   flex-shrink: 0;
 }
 
-.finish_btn,
-.remove_btn {
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
-  min-width: 90px;
-  text-align: center;
-}
-
-.finish_btn {
-  background: var(--success-color);
-  color: white;
-}
-
-.remove_btn {
-  background: var(--danger-color);
-  color: white;
-}
-
 .remove_icon {
   height: 32px;
   width: 32px;
@@ -553,15 +530,23 @@ p {
   .main_div {
     width: 95%;
   }
-}
 
-@media (max-width: 1024px) {
-  .task_list_view {
-    flex-direction: column;
+  /* Reposition Top Bar for Mobile */
+  .time_div {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
   }
-}
 
-@media (max-width: 480px) {
+  .heading_main_div {
+    margin-top: 10px;
+    /* Reduced margin since top bar is now in flow */
+  }
+
   .task_list_view {
     flex-direction: column;
     gap: 14px;
@@ -578,6 +563,30 @@ p {
   .input_div button,
   .input_div select {
     width: 100%;
+  }
+
+  /* Adjust task item layout for very small screens */
+  .rem_div li,
+  .finished-container li {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .task_actions {
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .username_div input {
+    width: 120px;
+    /* Slightly smaller on mobile */
+  }
+}
+
+@media (max-width: 1024px) {
+  .task_list_view {
+    flex-direction: column;
   }
 }
 
