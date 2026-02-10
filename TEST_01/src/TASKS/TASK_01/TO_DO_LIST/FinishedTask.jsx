@@ -1,19 +1,21 @@
-let FinishedTask = ({Finished_task , Remove_task}) =>{
-    return(
+import { FaTrash } from "react-icons/fa";
+
+let FinishedTask = ({ Finished_task, Remove_task }) => {
+    return (
         <>
             <p>Finished Task</p>
             {Finished_task.length === 0 && (<p>No finished tasks for this date</p>)}
             {
                 Finished_task.length > 0 && <div className="finished-container">
                     <ol>
-                    {Finished_task.map((task)=>(
-                        <div key={task.id}>
+                        {Finished_task.map((task) => (
+                            <div key={task.id}>
                                 <li>
                                     {task.text}
                                     <div className="task_actions">
-                                        <button onClick={()=>Remove_task(task.id)}>
-                                            Remove
-                                        </button>
+                                        <div className="remove_icon" onClick={() => Remove_task(task.id)}>
+                                            <FaTrash />
+                                        </div>
                                     </div>
                                 </li>
                             </div>

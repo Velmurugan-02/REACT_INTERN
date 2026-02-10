@@ -6,7 +6,7 @@ import TaskCount from "./TaskCount";
 import Calendar from "./Calendar";
 import Time from "./Time";
 import { getCookie, setCookie } from "./cookieUtils";
-import { FaSun, FaMoon } from "react-icons/fa";
+import { FaSun, FaMoon, FaPlus } from "react-icons/fa";
 import "./style/style.css";
 
 let ToDoList = () => {
@@ -175,7 +175,9 @@ let ToDoList = () => {
                                         <option value="Medium">Medium</option>
                                         <option value="Low">Low</option>
                                     </select>
-                                    <button onClick={add_task}>Add</button>
+                                    <div className="plus_icon" onClick={add_task}>
+                                        <FaPlus />
+                                    </div>
                                 </div>
                             </div>
                             <div className={`remaining_task ${expandRemaining ? "expanded" : ""}`}>

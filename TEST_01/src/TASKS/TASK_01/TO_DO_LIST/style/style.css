@@ -254,7 +254,6 @@ body {
   background: var(--primary-hover);
 }
 
-
 /* Priority text */
 #priority_id {
   background-color: var(--primary-color);
@@ -263,6 +262,25 @@ body {
   border-radius: 8px;
   cursor: pointer;
   padding: 0 5px;
+}
+
+.plus_icon {
+  height: 40px;
+  width: 40px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  /* Matching input border radius */
+  background-color: var(--success-color);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.plus_icon:hover {
+  background-color: var(--success-hover);
 }
 
 .rem_div li,
@@ -334,6 +352,23 @@ p {
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.8rem;
+}
+
+.check_icon {
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background-color: var(--success-color);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.check_icon:hover {
+  background-color: var(--success-hover);
 }
 
 .expanded {
@@ -494,6 +529,23 @@ p {
 .remove_btn {
   background: var(--danger-color);
   color: white;
+}
+
+.remove_icon {
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background-color: var(--danger-color);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.remove_icon:hover {
+  background-color: var(--danger-hover);
 }
 
 /* ===== Responsive ===== */
