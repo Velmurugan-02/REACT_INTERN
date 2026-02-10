@@ -5,9 +5,13 @@ import FinishedTask from "./FinishedTask";
 import TaskCount from "./TaskCount";
 import Calendar from "./Calendar";
 import Time from "./Time";
+//importing Cookies
 import { getCookie, setCookie } from "./cookieUtils";
+//importing icons
 import { FaSun, FaMoon, FaPlus } from "react-icons/fa";
+//importing css for styling
 import "./style/style.css";
+import RecycleTask from "./RecycleTask";
 
 let ToDoList = () => {
     //creating a state for the input.
@@ -34,6 +38,16 @@ let ToDoList = () => {
     useEffect(() => {
         setCookie('finished_tasklist', JSON.stringify(finishedtask), 7);
     }, [finishedtask]);
+
+    let [deletedtask, setDeletedtask] = useState(() => {
+        let deletedtask = getCookie('deletedtask');
+        return deletedtask ? JSON.parse(deletedtask) : [];
+    })
+
+    //Useeffect for storing the finished task in Cookie.
+    useEffect(() => {
+        setCookie('deletedtask', JSON.stringify(deletedtask), 7);
+    }, [deletedtask]);
 
     //Creating date state for calender
     let [selectedDate, setSelectedDate] = useState(
@@ -100,12 +114,20 @@ let ToDoList = () => {
 
     //Removing the finished task when remove button is clicked
     let remove_task = (taskId) => {
-        setFinishedtask(prev => prev.filter(task => task.id !== taskId));
+        const taskToDelete = finishedtask.find(task => task.id === taskId);
+        if (taskToDelete) {
+            setDeletedtask(prev => [...prev, taskToDelete]);
+            setFinishedtask(prev => prev.filter(task => task.id !== taskId));
+        }
     }
 
     //Removing Task from Remaining task List
     let remove_task_rem = (taskId) => {
-        setListtask(prev => prev.filter(task => task.id !== taskId));
+        const taskToDelete = listtask.find(task => task.id === taskId);
+        if (taskToDelete) {
+            setDeletedtask(prev => [...prev, taskToDelete]);
+            setListtask(prev => prev.filter(task => task.id !== taskId));
+        }
     }
 
     //Filtering the task based on task date selected
@@ -148,6 +170,7 @@ let ToDoList = () => {
                         <label>Name</label>
                         <input type="text" placeholder="Enter your name" value={username} onChange={value_bind_name}></input>
                     </div>
+
                 </div>
                 <div className="heading_main_div">
                     <div className="todo_heading">
@@ -169,6 +192,7 @@ let ToDoList = () => {
                                 />
                                 <div className="input_div">
                                     <input type="text" placeholder="Give a Task" value={task} onChange={value_bind}></input>
+                                    {/* Adding priority level for listing the task */}
                                     <select name="Priority" value={priority} onChange={value_priority} id="priority_id">
                                         <option value="All">All</option>
                                         <option value="High">High</option>
@@ -200,6 +224,9 @@ let ToDoList = () => {
                                 <FinishedTask Finished_task={filteredFinishedTasks} Remove_task={remove_task} />
                             </div>
                         </div>
+                    </div>
+                    <div className="recycle_task_div">
+                        <RecycleTask DeletedTask={deletedtask} />
                     </div>
                 </div>
             </div>

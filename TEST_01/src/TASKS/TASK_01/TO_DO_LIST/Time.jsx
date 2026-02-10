@@ -6,7 +6,7 @@ let Time = () => {
         let interval_time = setInterval(() => {
             setTime(new Date());
         }, 1000);
-        return ()=>{
+        return () => {
             clearInterval(interval_time);
         }
     }, []);

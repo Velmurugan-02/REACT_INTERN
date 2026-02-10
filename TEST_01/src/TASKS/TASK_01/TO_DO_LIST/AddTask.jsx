@@ -25,28 +25,23 @@ let AddTask = ({ Rem_tasks, onfinish, Remove_task_rem }) => {
                 sortedTasks.length > 0 && <div className="rem_list">
                     <ol>
                         {sortedTasks.map((task) => (
-                            <div key={task.id} className="rem_div">
-                                <li>
-                                    {task.text}{/*Task is displayed*/}
-                                    <span className={`priority ${task.task_level}`}>
-                                        {task.task_level}
-                                    </span>
-                                    {
-                                        task.date === new Date().toISOString().split("T")[0] &&
-                                        <div className="task_actions">
-                                            <div className="check_icon" onClick={() => { onfinish(task.id) }}>
-                                                <FaCheck />
-                                            </div>
-                                            <div className="remove_icon" onClick={() => Remove_task_rem(task.id)}>
-                                                <FaTrash />
-                                            </div>
-                                            {/* <div>
-                                            <FaXMark />
-                                        </div> */}
+                            <li key={task.id} className="rem_div">
+                                {task.text}{/*Task is displayed*/}
+                                <span className={`priority ${task.task_level}`}>
+                                    {task.task_level}
+                                </span>
+                                {
+                                    task.date === new Date().toISOString().split("T")[0] &&
+                                    <div className="task_actions">
+                                        <div className="check_icon" onClick={() => { onfinish(task.id) }}>
+                                            <FaCheck />
                                         </div>
-                                    }
-                                </li>
-                            </div>
+                                        <div className="remove_icon" onClick={() => Remove_task_rem(task.id)}>
+                                            <FaTrash />
+                                        </div>
+                                    </div>
+                                }
+                            </li>
                         ))}
                     </ol>
                 </div>

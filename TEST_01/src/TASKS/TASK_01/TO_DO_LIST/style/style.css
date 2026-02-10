@@ -283,7 +283,7 @@ body {
   background-color: var(--success-hover);
 }
 
-.rem_div li,
+li.rem_div,
 .finished-container li {
   word-break: break-word;
   overflow-wrap: anywhere;
@@ -414,7 +414,7 @@ p {
   gap: 8px;
 }
 
-.rem_div li,
+li.rem_div,
 .finished-container li {
   background: var(--item-bg);
   padding: 10px 12px;
@@ -544,7 +544,6 @@ p {
 
   .heading_main_div {
     margin-top: 10px;
-    /* Reduced margin since top bar is now in flow */
   }
 
   .task_list_view {
@@ -566,7 +565,7 @@ p {
   }
 
   /* Adjust task item layout for very small screens */
-  .rem_div li,
+  li.rem_div,
   .finished-container li {
     flex-direction: column;
     align-items: stretch;
@@ -604,4 +603,78 @@ p {
   .remove_btn {
     width: 100%;
   }
+}
+
+/* ===== Recycle Bin (Simple Button) ===== */
+.recycle_task_div {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.recycle-container-simple {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recycle-btn-simple {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.recycle-btn-simple:hover {
+  background: var(--bg-card);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.recycle-list-simple {
+  margin-top: 10px;
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 10px;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.recycle-list-simple ol {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.recycle-item-simple {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-decoration: line-through;
+}
+
+.recycle-item-simple:last-child {
+  border-bottom: none;
 }

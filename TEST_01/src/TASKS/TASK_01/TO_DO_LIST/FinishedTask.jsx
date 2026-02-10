@@ -9,16 +9,14 @@ let FinishedTask = ({ Finished_task, Remove_task }) => {
                 Finished_task.length > 0 && <div className="finished-container">
                     <ol>
                         {Finished_task.map((task) => (
-                            <div key={task.id}>
-                                <li>
-                                    {task.text}
-                                    <div className="task_actions">
-                                        <div className="remove_icon" onClick={() => Remove_task(task.id)}>
-                                            <FaTrash />
-                                        </div>
+                            <li key={task.id}>
+                                {task.text}
+                                <div className="task_actions">
+                                    <div className="remove_icon" onClick={() => Remove_task(task.id)}>
+                                        <FaTrash />
                                     </div>
-                                </li>
-                            </div>
+                                </div>
+                            </li>
                         ))}
                     </ol>
                 </div>

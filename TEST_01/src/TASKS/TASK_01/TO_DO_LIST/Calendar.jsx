@@ -8,7 +8,6 @@ const Calendar = memo(({selectedDate,setSelectedDate})=>{
         value={selectedDate}
         onChange={(e) => {
             setSelectedDate(e.target.value);
-            console.log("Date Clicked..");
           }
         }
       />
