@@ -48,13 +48,13 @@ let ToDoList = () => {
     let [expandRemaining, setExpandRemaining] = useState(false);
     let [expandFinished, setExpandFinished] = useState(false);
 
-    //Local Storage with for dark and light Theme
-    let [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+    //Cookie Storage with for dark and light Theme
+    let [theme, setTheme] = useState(getCookie('theme') || 'light');
 
-    //Useeffect for storing the theme in local storage.
+    //Useeffect for storing the theme in Cookie storage.
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+        setCookie('theme', theme, 7);
     }, [theme]);
 
     //Updating the state for input.
