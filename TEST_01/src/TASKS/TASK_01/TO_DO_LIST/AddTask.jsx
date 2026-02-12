@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { FaCheck, FaTrash } from "react-icons/fa";
-
 let AddTask = ({ Rem_tasks, onfinish, Remove_task_rem }) => {
     let [value_priority_choice, setValue_priority_choice] = useState("All");
     const priorityOrder = { High: 1, Medium: 2, Low: 3 };

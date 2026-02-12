@@ -1,42 +1,27 @@
 import { useState } from "react";
-import { FaHistory, FaTimes } from "react-icons/fa";
+import { FaTrashRestore, FaTrash } from "react-icons/fa";
 
-let RecycleTask = ({ DeletedTask }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
+let RecycleTask = ({ DeletedTask, Rem_tasks, DeleteTask }) => {
     return (
         <>
-            <div className="recycle-bin-container">
-                <button
-                    className="recycle-btn"
-                    onClick={() => setIsOpen(!isOpen)}
-                    title="View Deleted Tasks"
-                >
-                    Deleted Task
-                    {DeletedTask.length > 0 && <span className="recycle-badge">{DeletedTask.length}</span>}
-                </button>
-
-                {isOpen && (
-                    <div className="recycle-dropdown">
-                        <div className="recycle-header">
-                            <h4>Recycle Bin</h4>
-                            <FaTimes className="close-icon" onClick={() => setIsOpen(false)} />
-                        </div>
-
-                        {DeletedTask.length === 0 ? (
-                            <p className="empty-msg">No deleted tasks</p>
-                        ) : (
-                            <ul className="recycle-list">
-                                {DeletedTask.map(task => (
-                                    <li key={task.id} className="recycle-item">
-                                        <span className="task-text">{task.text}</span>
-                                        <span className="task-date">{task.date}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                )}
+            <div className="recycle-dropdown">
+                {DeletedTask.length === 0 ? (
+                    <p className="empty-msg">No deleted tasks</p>) :
+                    (
+                        <ul className="recycle-list">
+                            {DeletedTask.map(task => (
+                                <li key={task.id} className="recycle-item">
+                                    <span className="task-text">{task.text}</span>
+                                    <div>
+                                        <FaTrashRestore onClick={() => Rem_tasks(task.id)} />
+                                        <div className="remove_icon" onClick={() => DeleteTask(task.id)}>
+                                            <FaTrash />
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
             </div>
         </>
     );

@@ -5,13 +5,13 @@ import FinishedTask from "./FinishedTask";
 import TaskCount from "./TaskCount";
 import Calendar from "./Calendar";
 import Time from "./Time";
+import RecycleTask from "./RecycleTask";
 //importing Cookies
 import { getCookie, setCookie } from "./cookieUtils";
 //importing icons
 import { FaSun, FaMoon, FaPlus } from "react-icons/fa";
 //importing css for styling
 import "./style/style.css";
-import RecycleTask from "./RecycleTask";
 
 let ToDoList = () => {
     //creating a state for the input.
@@ -96,7 +96,9 @@ let ToDoList = () => {
             date: selectedDate,
         };
 
+        //Adding the task to task list
         setListtask(prev => [...prev, newTask]);
+        //Emptying the input
         setTask("");
         setExpandRemaining(true);
         setExpandFinished(false);
@@ -112,28 +114,50 @@ let ToDoList = () => {
         setExpandRemaining(false);
     };
 
-    //Removing the finished task when remove button is clicked
-    let remove_task = (taskId) => {
-        const taskToDelete = finishedtask.find(task => task.id === taskId);
-        if (taskToDelete) {
-            setDeletedtask(prev => [...prev, taskToDelete]);
-            setFinishedtask(prev => prev.filter(task => task.id !== taskId));
-        }
-    }
 
     //Removing Task from Remaining task List
     let remove_task_rem = (taskId) => {
         const taskToDelete = listtask.find(task => task.id === taskId);
         if (taskToDelete) {
+            taskToDelete.status = "deleted";
+            taskToDelete.origin = "todo";
             setDeletedtask(prev => [...prev, taskToDelete]);
             setListtask(prev => prev.filter(task => task.id !== taskId));
         }
     }
 
+    //Removing the finished task when remove button is clicked
+    let remove_task = (taskId) => {
+        const taskToDelete = finishedtask.find(task => task.id === taskId);
+        if (taskToDelete) {
+            taskToDelete.status = "deleted";
+            taskToDelete.origin = "finished";
+            setDeletedtask(prev => [...prev, taskToDelete]);
+            setFinishedtask(prev => prev.filter(task => task.id !== taskId));
+        }
+    }
+
+    //Restoring the task from recycle to remaining or finished
+    let restore_task = (taskId) => {
+        const taskToRestore = deletedtask.find(task => task.id === taskId);
+        setDeletedtask(prev => prev.filter(task => task.id !== taskId));
+
+        if (taskToRestore.origin === "finished") {
+            taskToRestore.status = "completed";
+            setFinishedtask(prev => [...prev, taskToRestore]);
+        }
+        else {
+            taskToRestore.status = "active";
+            setListtask(prev => [...prev, taskToRestore]);
+        }
+    }
+
+    let filtered_deletedTask = (taskId) => {
+        setDeletedtask(prev => prev.filter(task => task.id !== taskId));
+    }
+
     //Filtering the task based on task date selected
-    const filteredTasks = listtask.filter(
-        (task) => task.date === selectedDate
-    );
+    const filteredTasks = listtask.filter((task) => task.date === selectedDate);
 
     //Filtering the finished task based on date
     const filteredFinishedTasks = finishedtask.filter((task) => task.date === selectedDate);
@@ -222,11 +246,12 @@ let ToDoList = () => {
                                 {/* Adding the component for removing and showing finished task 
                                 with passing the list of task and finished_task function as props*/}
                                 <FinishedTask Finished_task={filteredFinishedTasks} Remove_task={remove_task} />
+
                             </div>
                         </div>
-                    </div>
-                    <div className="recycle_task_div">
-                        <RecycleTask DeletedTask={deletedtask} />
+                        <div className="recycle_task_div">
+                            <RecycleTask DeletedTask={deletedtask} Rem_tasks={restore_task} DeleteTask={filtered_deletedTask} />
+                        </div>
                     </div>
                 </div>
             </div>
