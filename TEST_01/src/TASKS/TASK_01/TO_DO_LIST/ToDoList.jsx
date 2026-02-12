@@ -88,12 +88,11 @@ let ToDoList = () => {
             alert("Give a Task");
             return;
         }
-
         const newTask = {
             id: Date.now(),
             text: task,
             task_level: priority,
-            date: selectedDate,
+            date: selectedDate
         };
 
         //Adding the task to task list
@@ -118,9 +117,11 @@ let ToDoList = () => {
     //Removing Task from Remaining task List
     let remove_task_rem = (taskId) => {
         const taskToDelete = listtask.find(task => task.id === taskId);
+        const task_index = listtask.findIndex(task => task.id === taskId);
         if (taskToDelete) {
             taskToDelete.status = "deleted";
             taskToDelete.origin = "todo";
+            taskToDelete.index = task_index
             setDeletedtask(prev => [...prev, taskToDelete]);
             setListtask(prev => prev.filter(task => task.id !== taskId));
         }
@@ -129,9 +130,11 @@ let ToDoList = () => {
     //Removing the finished task when remove button is clicked
     let remove_task = (taskId) => {
         const taskToDelete = finishedtask.find(task => task.id === taskId);
+        const task_index = finishedtask.findIndex(task => task.id === taskId);
         if (taskToDelete) {
             taskToDelete.status = "deleted";
             taskToDelete.origin = "finished";
+            taskToDelete.index = task_index
             setDeletedtask(prev => [...prev, taskToDelete]);
             setFinishedtask(prev => prev.filter(task => task.id !== taskId));
         }
@@ -143,12 +146,20 @@ let ToDoList = () => {
         setDeletedtask(prev => prev.filter(task => task.id !== taskId));
 
         if (taskToRestore.origin === "finished") {
-            taskToRestore.status = "completed";
-            setFinishedtask(prev => [...prev, taskToRestore]);
+            setFinishedtask(prev => {
+                const copy = [...prev];
+                const idx = Math.min(taskToRestore.index ?? copy.length,copy.length);
+                copy.splice(idx, 0, {...taskToRestore,status:"completed"});
+                return copy;
+            });
         }
         else {
-            taskToRestore.status = "active";
-            setListtask(prev => [...prev, taskToRestore]);
+            setListtask(prev => { 
+                const copy = [...prev];
+                const idx = Math.min(taskToRestore.index ?? copy.length,copy.length);
+                copy.splice(idx, 0, {...taskToRestore,status:"active"});
+                return copy;
+            });
         }
     }
 

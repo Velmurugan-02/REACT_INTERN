@@ -5,7 +5,11 @@ let AddTask = ({ Rem_tasks, onfinish, Remove_task_rem }) => {
     const priorityOrder = { High: 1, Medium: 2, Low: 3 };
     let sortedTasks = [...Rem_tasks].filter((task =>
         value_priority_choice === "All" ? true : task.task_level === value_priority_choice))
-        .sort((a, b) => priorityOrder[a.task_level] - priorityOrder[b.task_level]);
+        .sort((a, b) => {
+            const p = priorityOrder[a.task_level] - priorityOrder[b.task_level];
+            if(p !== 0) return p;
+            return (b.task_count ?? 0) - (a.task_count ?? 0);
+        });
     let value_priority = (e) => {
         setValue_priority_choice(e.target.value);
     }
