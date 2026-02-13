@@ -58,6 +58,7 @@ let ToDoList = () => {
     let [priority, setPriority] = useState("");
     let [value_input, setValue_input] = useState("");
 
+
     //State for expanding
     let [expandRemaining, setExpandRemaining] = useState(false);
     let [expandFinished, setExpandFinished] = useState(false);
@@ -108,7 +109,7 @@ let ToDoList = () => {
         const taskToFinish = listtask.find(t => t.id === taskId);
         if (!taskToFinish) return;
         setListtask(prev => prev.filter(t => t.id !== taskId));
-        setFinishedtask(prev => [...prev, taskToFinish]);
+        setFinishedtask(prev => [...prev, { ...taskToFinish, status: "completed" }].sort((a, b) => a.id - b.id));
         setExpandFinished(true);
         setExpandRemaining(false);
     };
@@ -117,49 +118,44 @@ let ToDoList = () => {
     //Removing Task from Remaining task List
     let remove_task_rem = (taskId) => {
         const taskToDelete = listtask.find(task => task.id === taskId);
-        const task_index = listtask.findIndex(task => task.id === taskId);
-        if (taskToDelete) {
-            taskToDelete.status = "deleted";
-            taskToDelete.origin = "todo";
-            taskToDelete.index = task_index
-            setDeletedtask(prev => [...prev, taskToDelete]);
-            setListtask(prev => prev.filter(task => task.id !== taskId));
-        }
-    }
+        if(!taskToDelete) return;
+        const deletedObj = {
+            ...taskToDelete,
+            status: "deleted",
+            origin: "todo",
+        };
+        setDeletedtask(prev => [...prev, deletedObj].sort((a, b) => a.id - b.id));
+        setListtask(prev => prev.filter(task => task.id !== taskId));
+    };
 
     //Removing the finished task when remove button is clicked
     let remove_task = (taskId) => {
         const taskToDelete = finishedtask.find(task => task.id === taskId);
-        const task_index = finishedtask.findIndex(task => task.id === taskId);
-        if (taskToDelete) {
-            taskToDelete.status = "deleted";
-            taskToDelete.origin = "finished";
-            taskToDelete.index = task_index
-            setDeletedtask(prev => [...prev, taskToDelete]);
-            setFinishedtask(prev => prev.filter(task => task.id !== taskId));
-        }
+        if(!taskToDelete) return;
+        const deletedObj = {
+            ...taskToDelete,
+            status: "deleted",
+            origin: "finished",
+        };
+        setDeletedtask(prev => [...prev, deletedObj].sort((a, b) => a.id - b.id));
+        setFinishedtask(prev => prev.filter(task => task.id !== taskId));
     }
 
     //Restoring the task from recycle to remaining or finished
     let restore_task = (taskId) => {
         const taskToRestore = deletedtask.find(task => task.id === taskId);
+        if(!taskToRestore) return;
         setDeletedtask(prev => prev.filter(task => task.id !== taskId));
 
         if (taskToRestore.origin === "finished") {
-            setFinishedtask(prev => {
-                const copy = [...prev];
-                const idx = Math.min(taskToRestore.index ?? copy.length,copy.length);
-                copy.splice(idx, 0, {...taskToRestore,status:"completed"});
-                return copy;
-            });
+            setFinishedtask(prev => 
+                [...prev, { ...taskToRestore, status: "completed" }].sort((a, b) => a.id - b.id)
+            );
         }
         else {
-            setListtask(prev => { 
-                const copy = [...prev];
-                const idx = Math.min(taskToRestore.index ?? copy.length,copy.length);
-                copy.splice(idx, 0, {...taskToRestore,status:"active"});
-                return copy;
-            });
+            setListtask(prev => 
+                [...prev, { ...taskToRestore, status: "active" }].sort((a, b) => a.id - b.id)
+            );
         }
     }
 
@@ -247,11 +243,19 @@ let ToDoList = () => {
                                     onfinish={finished_task}
                                     Remove_task_rem={remove_task_rem}
                                 />
-                                {task.trim() && <div className="rem_div">
-                                    <li>
-                                        {value_input}{/*Task is displayed*/}
-                                    </li>
-                                </div>}
+                                {task.trim() && (
+                                    <div className="rem_list">
+                                        <ol>
+                                            <li className="rem_div">
+                                                {value_input}
+                                                <span className={`priority ${priority}`}>
+                                                    {priority}
+                                                </span>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                )}
+
                             </div>
                             <div className={`finished_task_div ${expandFinished ? "expanded" : ""}`}>
                                 {/* Adding the component for removing and showing finished task 
